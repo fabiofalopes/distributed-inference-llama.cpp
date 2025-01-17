@@ -19,6 +19,7 @@ class ChatBot:
         
         payload = {
             "model": "phi-4-Q4_K_M.gguf",
+            #"model": "mixtral-8x7b-instruct-v0.1.Q3_K_M.gguf",
             "messages": self.conversation_history,
             "temperature": 0.7,
             "max_tokens": 512
