@@ -21,6 +21,18 @@ POP_03 (Worker): 192.168.1.34
 ```
 ## Installation Process
 
+### 0. Reminders 
+
+#### 0.1 Change hosts names
+```bash
+sudo hostnamectl set-hostname hostnamehere
+```
+
+#### 0.2 Install nvtop
+```bash 
+sudo apt install nvtop
+```
+
 ### 1. Prerequisites (ALL Machines)
 ```bash
 # System updates
