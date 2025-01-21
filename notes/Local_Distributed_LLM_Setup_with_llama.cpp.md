@@ -134,6 +134,19 @@ cd ~/llama.cpp/build-cuda-rpc
     --host 0.0.0.0 \
     --port 8080
 ```
+
+#### Serve 70B Model with 6 Workers in a Local Network
+```bash
+./bin/llama-server \
+    -m /home/dsi/Downloads/models/Llama-3.3-70B-Instruct-Q4_K_M.gguf \
+    --rpc 192.168.10.2:50052,192.168.10.3:50052,192.168.10.4:50052,192.168.10.5:50052,192.168.10.6:50052,192.168.10.7:50052 \
+    -c 1024 \
+    -n 256 \
+    --gpu-layers 99 \
+    --host 0.0.0.0 \
+    --port 8080
+```
+
 ## Important Technical Notes
 
 ### CUDA Version Management
