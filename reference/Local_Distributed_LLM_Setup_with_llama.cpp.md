@@ -19,6 +19,7 @@ Network: Local network with GB networking
 ### Network Configuration Examples
 
 #### Basic Setup (2 Machines - 22B Model)
+
 ```markdown
 [Main Node] 192.168.1.161 (API Server + Worker)
     │
@@ -29,6 +30,7 @@ Network: Local network with GB networking
 ```
 
 #### Medium Setup (3 Machines - 32B Model)
+
 ```markdown
 [Main Node] 192.168.1.161 (API Server + Worker)
     │
@@ -40,6 +42,7 @@ Network: Local network with GB networking
 ```
 
 #### Large Setup (7 Machines - 70B Model)
+
 ```markdown
 [Main Node] 192.168.1.161 (API Server + Worker)
     │
