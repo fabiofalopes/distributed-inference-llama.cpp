@@ -4,7 +4,7 @@ Complete Documentation & Cookbook
 > Note: This guide uses example IPs in the 192.168.1.0/24 range. In production, replace with your actual network configuration.
 
 ## Local Environment 
-```
+
 7x Identical Machines
 Network Configuration: Local network with GB networking for optimal speeds
 Total Combined VRAM: 56GB (7x 8GB RTX 3060 Ti)
