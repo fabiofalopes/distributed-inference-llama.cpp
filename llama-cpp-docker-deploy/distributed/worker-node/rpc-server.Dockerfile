@@ -30,6 +30,7 @@ RUN mkdir -p build && cd build && \
     -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
     -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc \
     -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
+    -DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib64/stubs -lcuda" \
     && cmake --build . --config Release -j$(nproc)
 
 # Expose the RPC port
