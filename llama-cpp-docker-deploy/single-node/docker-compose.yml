@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: llama-server.Dockerfile
     image: llama-cpp-server-single
+    runtime: nvidia
     ports:
       - "8080:8080"
     volumes:
@@ -15,6 +16,8 @@ services:
       - PORT=8080
       # - CTX_SIZE=${CTX_SIZE:-2048}
       - ALIAS=${MODEL_ALIAS:-llama-model}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
     deploy:
       resources:
         reservations:
