@@ -7,18 +7,11 @@ services:
       dockerfile: llama-server.Dockerfile
     image: llama-cpp-main-server
     ports:
-      - "8080:8080"
+      - "${PORT}:${PORT}"
     volumes:
       - ./models:/app/models
-    environment:
-      - MODEL=/app/models/your-model.gguf
-      - RPC_SERVERS=192.168.1.162:50052,192.168.1.163:50052
-      - N_GPU_LAYERS=99
-      - HOST=0.0.0.0
-      - PORT=8080
-      - CTX_SIZE=2048
-      - ALIAS=your-model-alias
-      - N_GQA=8
+    env_file:
+      - .env
     deploy:
       resources:
         reservations:

@@ -7,7 +7,9 @@ services:
       dockerfile: rpc-server.Dockerfile
     image: llama-cpp-rpc-server
     ports:
-      - "50052:50052"  # Expose the RPC port.  Important for external access.
+      - "${PORT}:${PORT}"  # Expose the RPC port using env variable
+    env_file:
+      - .env
     deploy:
       resources:
         reservations:
