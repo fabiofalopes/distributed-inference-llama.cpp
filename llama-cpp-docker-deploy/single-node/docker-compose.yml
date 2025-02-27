@@ -1,23 +1,23 @@
+version: '3.8'
+
 services:
   llama-server:
     build:
       context: .
       dockerfile: llama-server.Dockerfile
     image: llama-cpp-server-single
-    runtime: nvidia
     ports:
       - "8080:8080"
     volumes:
       - ./models:/app/models
     environment:
-      - MODEL=/app/models/${MODEL_DIR}/${MODEL_FILE}
-      - N_GPU_LAYERS=${N_GPU_LAYERS:-99}
+      - MODEL=/app/models/your-model.gguf
+      - N_GPU_LAYERS=99
       - HOST=0.0.0.0
       - PORT=8080
-      # - CTX_SIZE=${CTX_SIZE:-2048}
-      - ALIAS=${MODEL_ALIAS:-llama-model}
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
+      - CTX_SIZE=2048
+      - ALIAS=your-single-model-alias
+      - N_GQA=8
     deploy:
       resources:
         reservations:

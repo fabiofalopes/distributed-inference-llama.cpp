@@ -23,16 +23,14 @@ RUN git clone https://github.com/ggerganov/llama.cpp.git /app/llama.cpp
 # Build llama.cpp with CUDA and RPC support
 WORKDIR /app/llama.cpp
 RUN mkdir -p build && cd build && \
+    export CUDA_PATH=/usr/local/cuda && \
+    export CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda && \
     cmake .. \
     -DGGML_CUDA=ON \
     -DGGML_RPC=ON \
     -DCMAKE_CUDA_ARCHITECTURES="86" \
-    -DCMAKE_CXX_STANDARD=17 \
-    -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
-    -DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc \
-    -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
-    -DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib64/stubs -lcuda" \
-    && cmake --build . --config Release -j$(nproc)
+    -DCMAKE_CXX_STANDARD=17 && \
+    cmake --build . --config Release -j$(nproc)
 
 # Create a directory for models
 RUN mkdir -p /app/models

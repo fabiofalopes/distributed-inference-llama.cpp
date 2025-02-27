@@ -11,13 +11,14 @@ services:
     volumes:
       - ./models:/app/models
     environment:
-      - MODEL=/app/models/${MODEL_DIR}/${MODEL_FILE}
-      - RPC_SERVERS=${WORKER_IPS:-worker1_ip:50052,worker2_ip:50052}
-      - N_GPU_LAYERS=${N_GPU_LAYERS:-99}
+      - MODEL=/app/models/your-model.gguf
+      - RPC_SERVERS=192.168.1.162:50052,192.168.1.163:50052
+      - N_GPU_LAYERS=99
       - HOST=0.0.0.0
       - PORT=8080
-      - CTX_SIZE=${CTX_SIZE:-2048}
-      - ALIAS=${MODEL_ALIAS:-llama-model}
+      - CTX_SIZE=2048
+      - ALIAS=your-model-alias
+      - N_GQA=8
     deploy:
       resources:
         reservations:
