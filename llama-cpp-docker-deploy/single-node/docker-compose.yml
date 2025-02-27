@@ -5,19 +5,35 @@ services:
     build:
       context: .
       dockerfile: llama-server.Dockerfile
+      args:
+        CUDA_ARCHITECTURES: "${CUDA_ARCHITECTURES:-75}"  # Default to 75, but allow override
     image: llama-cpp-server-single
     ports:
       - "8080:8080"
     volumes:
       - ./models:/app/models
     environment:
-      - MODEL=/app/models/your-model.gguf
-      - N_GPU_LAYERS=99
-      - HOST=0.0.0.0
-      - PORT=8080
-      - CTX_SIZE=2048
-      - ALIAS=your-single-model-alias
-      - N_GQA=8
+      - MODEL_FILE=${MODEL_FILE:-your-model.gguf}
+      - MODEL_ALIAS=${MODEL_ALIAS:-llama-model}
+      - N_GPU_LAYERS=${N_GPU_LAYERS:-99}
+      - CTX_SIZE=${CTX_SIZE:-2048}
+      - N_GQA=${N_GQA:-8}
+      - HOST=${HOST:-0.0.0.0} # Default host and port
+      - PORT=${PORT:-8080}
+    command:
+      - "./llama-server"
+      - "-m"
+      - "/app/models/${MODEL_FILE}"
+      - "--host"
+      - "${HOST}"
+      - "--port"
+      - "${PORT}"
+      - "--ctx-size"
+      - "${CTX_SIZE}"
+      - "--alias"
+      - "${MODEL_ALIAS}"
+      - "--n-gpu-layers"
+      - "${N_GPU_LAYERS}"
     deploy:
       resources:
         reservations:
